@@ -1,0 +1,22 @@
+<section id="login-container">
+  <section class="modal-body">
+    <h1 class="modal-header">Вход</h1>
+    <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+      <section class="form-group">
+        <label>Email:</label>
+        <input type="text" name="email" [(ngModel)]="user.email"  class="form-control" required>
+      </section>
+
+      <section class="form-group">
+        <label>Password:</label>
+        <input type="password" name="password" [(ngModel)]="user.password"  class="form-control" required>
+      </section>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <p>
+      Еще нет аккаунта?
+    <a [routerLink] = "['/register']" class="w3-bar-item w3-button w3-mobile">Зарегистрируйтесь прямо сейчас!</a>
+    </p>
+  </section>
+</section>

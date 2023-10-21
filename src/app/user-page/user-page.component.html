@@ -1,0 +1,59 @@
+<div *ngIf="userData">
+  <header class="modal-header">
+    <h3>{{ userData.name }}</h3>
+    <a class="nav-link" [routerLink]="['/friend-news']">Новости</a>
+    <a [routerLink]="['/users/all']" class="nav-link">Все пользователи</a>
+    <button (click)="logout()" class="btn bg-white">Logout</button>
+  </header>
+
+  <section id="user-info">
+    <img [src]="userData.photo" [alt]="'Фото ' + userData.name">
+    <div class="user-details">
+      <h2>{{ userData.name }}</h2>
+      <p>Дата рождения: {{ userData.birthdate }}</p>
+      <p>Почта: {{ userData.email }}</p>
+      <p>
+        <button *ngIf="!isMyProfile && !isFriend" (click)="addToFriends()" class="btn btn-primary">Добавить в друзья</button>
+        <button *ngIf="!isMyProfile && isFriend" (click)="removeFromFriends()" class="btn btn-success">Удалить из друзей</button>
+      </p>
+      <p>
+        <a class="page-link" [href]="'/users/' + userData.id">Список друзей пользователя</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="user-news">
+    <button (click)="openPhotoModal()" class="btn btn-primary" *ngIf="isMyProfile">Изменить фото</button>
+    <hr>
+    <h2>Новости пользователя</h2>
+
+    <form (ngSubmit)="publishNews()" #newsForm="ngForm" *ngIf="isMyProfile">
+      <label for="newsContent">Введите новость:</label>
+      <input type="text" id="newsContent" name="newsContent" [(ngModel)]="newNewsContent" class="form-control" required>
+      <button type="submit" class="btn btn-primary">Опубликовать</button>
+    </form>
+
+    <ng-container *ngFor="let elem of news">
+      <ng-container *ngIf="elem.status === 'active'">
+        <div class="news-item">
+          <h3>{{ userData.name }}</h3>
+          <p>{{ elem.content }}</p>
+          <p class="time">{{ elem.time }}</p>
+        </div>
+      </ng-container>
+    </ng-container>
+  </section>
+
+</div>
+
+<div id="photo-modal" class="modal" [class.visible]="modalVisible">
+  <div class="modal-content">
+    <div class="modal-content">
+      <span class="close" (click)="closePhotoModal()">&times;</span>
+      <p>Введите новую ссылку на фото:</p>
+      <input type="text" [(ngModel)]="newPhotoUrl">
+      <button (click)="saveChanges(true)">Обновить фото</button>
+      <button (click)="saveChanges(false)">Удалить фото</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<header class="modal-header">
+  <h3>Список пользователей</h3>
+  <a class="nav-link" [routerLink]="['/friend-news']" >Новости</a>
+  <a [routerLink]="['/users/all']" class="nav-link">Все пользователи</a>
+  <button (click)="logout()" class="btn bg-white">Logout</button>
+</header>
+
+<section id="users-container">
+  <div *ngFor="let user of users" class="user-item">
+    <a [routerLink]="['/user/' + user.id]" class="simpleLink">
+      <img [src]="user.photo" [alt]="'Фото ' + user.name">
+    <div class="user-info">
+      <h3>{{ user.name }}</h3>
+      <p>{{ user.email }}</p>
+    </div>
+    </a>
+  </div>
+</section>
+
+

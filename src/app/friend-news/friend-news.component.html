@@ -1,0 +1,18 @@
+<header class="modal-header">
+  <h3>Новости</h3>
+  <a class="nav-link" [routerLink]="['/friend-news']">Новости</a>
+  <a class="nav-link" [routerLink] = "['/users/all']">Все пользователи</a>
+  <button (click)="logout()" class="btn bg-white">Logout</button>
+</header>
+
+<section id="user-news">
+  <ng-container *ngFor="let elem of friendNews">
+    <div *ngIf="elem.status === 'active'" class="news-item">
+      <h2>
+        <a [href]="['/user/' + elem.userId]">{{ elem.userName }}</a>
+      </h2>
+      <p>{{ elem.content }}</p>
+      <p class="time">{{ elem.time }}</p>
+    </div>
+  </ng-container>
+</section>

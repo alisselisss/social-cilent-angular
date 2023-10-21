@@ -1,0 +1,24 @@
+<section id="register-container">
+  <section class="modal-body">
+    <h1 class="modal-header">Регистрация</h1>
+    <form (ngSubmit)="onSubmit()">
+      <section class="form-group">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="user.username" class="form-control" required>
+      </section>
+
+      <section class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="user.email" class="form-control" required>
+      </section>
+
+      <section class="form-group">
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="user.password" class="form-control" required>
+      </section>
+
+      <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+    </form>
+  </section>
+</section>
+
